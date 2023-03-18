@@ -1,7 +1,4 @@
-// Preparing for Merge Sort by merging two sorted arrays
-
-var arr1 = [1,3,5,8,40];
-var arr2 = [2,4,7,9,11,12,45,67,89,90];
+// Merge Sort v1
 
 function merge(arr1, arr2){
   var result = [];
@@ -24,8 +21,17 @@ function merge(arr1, arr2){
     result.push(arr2[j]);
     j++;
   }
-
   return result;
 }
 
-console.log(merge(arr1,arr2));
+var arr = [909,34,6443,23,554,32,122,75,43,2,4,65,2,23332,1,22,344,54];
+
+function mergeSort(arr){
+  if(arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0,mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left,right);
+}
+
+console.log(mergeSort(arr));
