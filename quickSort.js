@@ -35,3 +35,8 @@ function quickSort(arr, left = 0, right = arr.length - 1){
 
 console.log(arr);
 console.log(quickSort(arr));
+
+// But in the worst case scenario, Big O of Quick Sort would be O(n^2), in case the minimum or maximum value is chosen each time for the pivot point
+// Reason being that in that case, the array would have to be decomposed n times, with potentially n comparisons to be made each time
+// In my case, as I am always starting at index 0, this would happen if the array was already ordered, or if it was in descending order
+// Could be remedied by picking a random index from the array for a starting point
