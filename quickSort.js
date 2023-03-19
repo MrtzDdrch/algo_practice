@@ -1,4 +1,4 @@
-// Writing the Partition / Pivot Helper to be used in Quick Sort later
+// Quick Sort v1
 
 var arr = [10,39,763,1,86,28,65,7,8,9,434,675,3,5];
 
@@ -22,4 +22,16 @@ function pivot(arr, start=0, end=arr.length-1){
   return swapIdx;
 }
 
-console.log(pivot(arr));
+function quickSort(arr, left = 0, right = arr.length - 1){
+  if(left < right){
+    let pivotIndex = pivot(arr, left, right);
+    // Left side
+    quickSort(arr, left, pivotIndex - 1);
+    // Right side
+    quickSort(arr, pivotIndex + 1, right);
+  }
+  return arr;
+}
+
+console.log(arr);
+console.log(quickSort(arr));
