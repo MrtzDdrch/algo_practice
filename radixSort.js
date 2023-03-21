@@ -1,6 +1,7 @@
 // Helper functions rearranged in the order they are called
-// I combined and simplified two of the functions as it seemed unnecessarily complex to me otherwise
+// I combined and simplified two of the functions from Stack Overflow as it seemed unnecessarily complex to me otherwise
 // I have to admit that I am not a fan of this one
+// v2: Seeing as how it was only one line, I integrated one more of the helper functions into radixSort()
 
 function maxDigits(arr){
   let maxDigits = 0;
@@ -12,16 +13,12 @@ function maxDigits(arr){
   return maxDigits;
 }
 
-function getDigit(num, i){
-  return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
-}
-
 function radixSort(arr){
   var maxDigitCount = maxDigits(arr);
   for(var k = 0; k <= maxDigitCount; k++){
     var digitBuckets = Array.from({length: 10}, () => []);
     for(var i = 0; i < arr.length; i++){
-      let digit = getDigit(arr[i], k);
+      let digit = Math.floor(Math.abs(arr[i]) / Math.pow(10, k)) % 10;
       digitBuckets[digit].push(arr[i]);
     }
     arr = [].concat(...digitBuckets);
