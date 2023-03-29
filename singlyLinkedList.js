@@ -72,4 +72,15 @@ class SinglyLinkedList{
     this.length++;
     return this;
   }
+  // get(): Accept index, check if index is applicable to list, loop through list until index is found and return value
+  get(index){
+    if(typeof(index) !== 'number') return undefined;
+    if(index < 0 || index >= this.length) return undefined;
+    var current = this.head;
+    while(index > 0){
+      current = current.next;
+      index--;
+    }
+    return current.val;
+  }
 }
