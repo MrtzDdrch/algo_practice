@@ -1,5 +1,4 @@
 // Working on a Singly Linked List. Unfinished, work in progress...
-// Now has push() and pop() methods
 
 class Node{
   constructor(val){
@@ -59,5 +58,18 @@ class SinglyLinkedList{
     this.head = this.head.next;
     this.length--;
     return currentHead.val;
+  }
+  // unshift(): Accept value, create new node, set new node as head, increment length by 1, return the list
+  unshift(val){
+    var newNode = new Node(val);
+    if(this.length === 0){
+      this.head = newNode;
+      this.tail = newNode;
+    }else{
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
   }
 }
