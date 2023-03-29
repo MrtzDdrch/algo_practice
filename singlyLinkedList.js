@@ -44,8 +44,20 @@ class SinglyLinkedList{
     this.tail.next = null;
     this.length--;
     return current.val;
-  }    
+  }
+  // shift(): Remove node from beginning of list, delete (and return) it, move head over to next in line, decrement length by 1
+  // I returned just the current heads' value rather than the node, because who wants the node?
+  shift(){
+    if(!this.head) return undefined;
+    var currentHead = this.head;
+    if(this.length === 1){
+      this.head = null;
+      this.tail = null;
+      this.length--;
+      return currentHead.val;
+    }
+    this.head = this.head.next;
+    this.length--;
+    return currentHead.val;
+  }
 }
-
-
-
