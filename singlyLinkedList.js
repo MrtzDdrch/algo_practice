@@ -73,7 +73,8 @@ class SinglyLinkedList{
     return this;
   }
   // get(): Accept index, check if index is applicable to list, loop through list until index is found and return value
-  get(index){
+  // Changed this function to make return of node optional. This makes things easier down the road, when I want to use this function from within another function
+  get(index, node=false){
     if(typeof(index) !== 'number') return undefined;
     if(index < 0 || index >= this.length) return undefined;
     var current = this.head;
@@ -81,24 +82,21 @@ class SinglyLinkedList{
       current = current.next;
       index--;
     }
+    if(node){
+      return current;
+    }
     return current.val;
   }
-  // Set new value for existing node. I do some things twice here because I don't want to return the node with get(), but only the value
-  // This means I cannot use get() here. In the course it is done differently, but I prefer it this way
+  // Set new value for existing node
   set(index, val){
-    if(typeof(index) !== 'number') return false;
-    if(index < 0 || index >= this.length) return false;
-    var current = this.head;
-    while(index > 0){
-      current = current.next;
-      index--;
+    var node = this.get(index, true);
+    if(node){
+      node.val = val;
+      return true;
     }
-    current.val = val;
-    return true;
+    return false;
   }
 }
 
 
-var list = new SinglyLinkedList;
-list.push('lol');
-list.push('dded');
+
