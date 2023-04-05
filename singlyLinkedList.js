@@ -13,6 +13,18 @@ class SinglyLinkedList{
     this.head = null;
     this.tail = null;
   }
+  // I want this one for testing and tinkering. It is just logging all values from all nodes
+  logAll(){
+    if(this.length > 0){
+      var length = this.length;
+      var current = this.head;
+      while(length > 0){
+        console.log(current.val);
+        current = current.next;
+        length--;
+      }
+    }
+  }
   // Push new node to the end of the list
   push(val){
     var newNode = new Node(val);
@@ -96,7 +108,26 @@ class SinglyLinkedList{
     }
     return false;
   }
+  // Insert new node into the list
+  insert(index, val){
+    if(typeof(index) !== 'number' || index < 0 || index > this.length) return false;
+    if(index === 0) return !!this.unshift(val);
+    if(index === this.length) return !!this.push(val);
+    
+    var newNode = new Node(val);
+    var previous = this.get(index - 1, true);
+    newNode.next = previous.next;
+    previous.next = newNode;
+    this.length++;
+    return true;
+  }
 }
+
+var list = new SinglyLinkedList;
+list.push(1);
+list.push(2);
+list.push(3);
+
 
 
 
