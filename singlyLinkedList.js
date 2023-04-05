@@ -83,4 +83,22 @@ class SinglyLinkedList{
     }
     return current.val;
   }
+  // Set new value for existing node. I do some things twice here because I don't want to return the node with get(), but only the value
+  // This means I cannot use get() here. In the course it is done differently, but I prefer it this way
+  set(index, val){
+    if(typeof(index) !== 'number') return false;
+    if(index < 0 || index >= this.length) return false;
+    var current = this.head;
+    while(index > 0){
+      current = current.next;
+      index--;
+    }
+    current.val = val;
+    return true;
+  }
 }
+
+
+var list = new SinglyLinkedList;
+list.push('lol');
+list.push('dded');
