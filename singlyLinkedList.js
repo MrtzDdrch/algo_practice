@@ -87,33 +87,28 @@ class SinglyLinkedList{
   // get(): Accept index, check if index is applicable to list, loop through list until index is found and return value
   // Changed this function to make return of node optional. This makes things easier down the road, when I want to use this function from within another function
   get(index, node=false){
-    if(typeof(index) !== 'number') return undefined;
-    if(index < 0 || index >= this.length) return undefined;
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return undefined;
     var current = this.head;
     while(index > 0){
       current = current.next;
       index--;
     }
-    if(node){
-      return current;
-    }
+    if(node) return current;
     return current.val;
   }
   // Set new value for existing node
   set(index, val){
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return false;
     var node = this.get(index, true);
-    if(node){
-      node.val = val;
-      return true;
-    }
-    return false;
+    node.val = val;
+    return true;
   }
   // Insert new node into the list
   insert(index, val){
     if(typeof(index) !== 'number' || index < 0 || index > this.length) return false;
     if(index === 0) return !!this.unshift(val);
     if(index === this.length) return !!this.push(val);
-    
+
     var newNode = new Node(val);
     var previous = this.get(index - 1, true);
     newNode.next = previous.next;
@@ -121,12 +116,21 @@ class SinglyLinkedList{
     this.length++;
     return true;
   }
+  // Remove node from list
+  remove(index){
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return undefined;
+    if(index === this.length - 1) return this.pop();
+    if(index === 0) return this.shift();
+
+    var previousNode = this.get(index - 1, true);
+    var removedNode = previousNode.next;
+    previousNode.next = removedNode.next;
+    this.length--;
+    return removedNode.val;
+  }
 }
 
-var list = new SinglyLinkedList;
-list.push(1);
-list.push(2);
-list.push(3);
+
 
 
 
