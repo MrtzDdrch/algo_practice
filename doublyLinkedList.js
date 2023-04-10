@@ -4,7 +4,7 @@ class Node{
   constructor(val){
     this.val = val;
     this.next = null;
-    this.previous = null;
+    this.prev = null;
   }
 }
 
@@ -14,8 +14,19 @@ class DoublyLinkedList{
     this.tail = null;
     this.length = 0;
   }
-  push(){
-
+  // Push new node to the end of the list
+  push(val){
+    var newNode = new Node(val);
+    if(!this.head){
+      this.head = newNode;
+      this.tail = newNode;
+    }else{
+      newNode.prev = this.tail;
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
   }
   pop(){
 
@@ -33,6 +44,11 @@ class DoublyLinkedList{
 
   }
   remove(){
-    
+
   }
 }
+
+var list = new DoublyLinkedList();
+list.push(1);
+list.push(2);
+list.push(3);
