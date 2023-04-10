@@ -72,8 +72,19 @@ class DoublyLinkedList{
     }
     return undefined; 
   }
-  unshift(){
-
+  // Add node to beginning of list
+  unshift(val){
+    var newHead = new Node(val);
+    if(this.length === 0){
+      this.head = newHead;
+      this.tail = newHead;
+    }else{
+      this.head.prev = newHead;
+      this.newHead.next = this.head;
+      this.head = newHead;
+    }
+    length++;
+    return this;
   }
   get(){
 
