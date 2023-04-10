@@ -1,4 +1,4 @@
-// Working on a Singly Linked List. Unfinished, work in progress...
+// Working on a Singly Linked List
 
 class Node{
   constructor(val){
@@ -128,10 +128,23 @@ class SinglyLinkedList{
     this.length--;
     return removedNode.val;
   }
+  // Reverse order of linked list
+  reverse(){
+    if(this.length > 1){
+      // Change head and tail
+      var node = this.head;
+      this.head = this.tail;
+      this.tail = node;
+      // this part is tying a knot in my brain
+      var next;
+      var prev = null;
+      for(var i = 0; i < this.length; i++){
+        next = node.next;
+        node.next = prev;
+        prev = node;
+        node = next;
+      }
+    }
+    return this;
+  }
 }
-
-
-
-
-
-
