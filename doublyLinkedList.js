@@ -86,8 +86,16 @@ class DoublyLinkedList{
     length++;
     return this;
   }
-  get(){
-
+  // Get node from index
+  get(index, node=false){
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return undefined;
+    var current = this.head;
+    while(index > 0){
+      current = current.next;
+      index--;
+    }
+    if(!node) return current.val;
+    return current;
   }
   set(){
 
