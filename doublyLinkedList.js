@@ -97,8 +97,12 @@ class DoublyLinkedList{
     if(!node) return current.val;
     return current;
   }
-  set(){
-
+  // set new value for existing node
+  set(index, val){
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return undefined;
+    var node = this.get(index, true);
+    node.val = val;
+    return true;
   }
   insert(){
 
