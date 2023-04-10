@@ -104,8 +104,19 @@ class DoublyLinkedList{
     node.val = val;
     return true;
   }
-  insert(){
+  // insert new node into list at given index
+  insert(index, val){
+    if(typeof(index) !== 'number' || index < 0 || index > this.length) return false;
+    if(index === 0) return !!this.unshift(val);
+    if(index === this.length) return !!this.push(val);
 
+    var newNode = new Node(val);
+    var previous = this.get(index - 1, true);
+    newNode.next = previous.next;
+    newNode.prev = previous;
+    previous.next = newNode;
+    this.length++;
+    return true;
   }
   remove(){
 
