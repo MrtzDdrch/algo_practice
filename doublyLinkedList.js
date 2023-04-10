@@ -55,11 +55,25 @@ class DoublyLinkedList{
     this.length--;
     return poppedNode.val;
   }
+  // Remove node from beginning of list
   shift(){
-
+    if(this.head){
+      var oldHead = this.head;
+      if(oldHead.next){
+        oldHead.next.prev = null;
+        this.head = oldHead.next;
+        oldHead.next = null;
+      }else{
+        this.head = null;
+        this.tail = null;
+      }
+      this.length--;
+      return oldHead.val;
+    }
+    return undefined; 
   }
   unshift(){
-    
+
   }
   get(){
 
