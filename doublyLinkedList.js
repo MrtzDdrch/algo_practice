@@ -131,14 +131,17 @@ class DoublyLinkedList{
     this.length++;
     return true;
   }
+  // Remove node from list
   remove(index){
-    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return undefined;
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return false;
     if(index === this.length - 1) return this.pop();
     if(index === 0) return this.shift();
 
-    var previousNode = this.get(index - 1, true);
-    var removedNode = previousNode.next;
-    previousNode.next = removedNode.next;
+    var removedNode = this.get(index, true);
+    removedNode.prev.next = removedNode.next;
+    removedNode.next.prev = removedNode.prev;
+    removedNode.prev = null;
+    removedNode.next = null;
     this.length--;
     return removedNode.val;
   }
