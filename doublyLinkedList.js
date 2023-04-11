@@ -80,10 +80,10 @@ class DoublyLinkedList{
       this.tail = newHead;
     }else{
       this.head.prev = newHead;
-      this.newHead.next = this.head;
+      newHead.next = this.head;
       this.head = newHead;
     }
-    length++;
+    this.length++;
     return this;
   }
   // Get node from index
