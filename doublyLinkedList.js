@@ -42,18 +42,20 @@ class DoublyLinkedList{
   }
   // Remove node from end of list
   pop(){
-    if(!this.tail) return undefined;
-    var poppedNode = this.tail;
-    if(poppedNode.prev){
-      this.tail = poppedNode.prev;
-      this.tail.next = null;
-      poppedNode.prev = null;
-    }else{
-      this.head = null;
-      this.tail = null;
+    if(this.tail){
+      var poppedNode = this.tail;
+      if(poppedNode.prev){
+        this.tail = poppedNode.prev;
+        this.tail.next = null;
+        poppedNode.prev = null;
+      }else{
+        this.head = null;
+        this.tail = null;
+      }
+      this.length--;
+      return poppedNode.val;
     }
-    this.length--;
-    return poppedNode.val;
+    return undefined;
   }
   // Remove node from beginning of list
   shift(){
@@ -129,8 +131,16 @@ class DoublyLinkedList{
     this.length++;
     return true;
   }
-  remove(){
+  remove(index){
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return undefined;
+    if(index === this.length - 1) return this.pop();
+    if(index === 0) return this.shift();
 
+    var previousNode = this.get(index - 1, true);
+    var removedNode = previousNode.next;
+    previousNode.next = removedNode.next;
+    this.length--;
+    return removedNode.val;
   }
 }
 
