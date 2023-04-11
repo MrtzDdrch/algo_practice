@@ -87,12 +87,22 @@ class DoublyLinkedList{
     return this;
   }
   // Get node from index
+  // This was basically just the method from the singly linked list. Updated for doubly linked list
   get(index, node=false){
-    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return undefined;
-    var current = this.head;
-    while(index > 0){
-      current = current.next;
-      index--;
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return null;   
+    if(index <= Math.floor(this.length / 2)){
+      var current = this.head;
+      while(index > 0){
+        current = current.next;
+        index--;
+      }
+    }else{
+      var current = this.tail;
+      index = this.length - index;
+      while(index > 1){
+        current = current.prev;
+        index--;
+      }
     }
     if(!node) return current.val;
     return current;
@@ -127,3 +137,7 @@ var list = new DoublyLinkedList();
 list.push(1);
 list.push(2);
 list.push(3);
+list.push(4);
+list.push(5);
+list.push(6);
+list.push(7);
