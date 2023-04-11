@@ -109,7 +109,7 @@ class DoublyLinkedList{
   }
   // set new value for existing node
   set(index, val){
-    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return undefined;
+    if(typeof(index) !== 'number' || index < 0 || index >= this.length) return false;
     var node = this.get(index, true);
     node.val = val;
     return true;
@@ -123,6 +123,7 @@ class DoublyLinkedList{
     var newNode = new Node(val);
     var previous = this.get(index - 1, true);
     newNode.next = previous.next;
+    newNode.next.prev = newNode;
     newNode.prev = previous;
     previous.next = newNode;
     this.length++;
