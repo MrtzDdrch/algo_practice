@@ -1,4 +1,4 @@
-// Another linked list. Oh joy. 
+// Another linked list. Oh joy.
 
 class Node{
   constructor(val){
@@ -146,12 +146,3 @@ class DoublyLinkedList{
     return removedNode.val;
   }
 }
-
-var list = new DoublyLinkedList();
-list.push(1);
-list.push(2);
-list.push(3);
-list.push(4);
-list.push(5);
-list.push(6);
-list.push(7);
